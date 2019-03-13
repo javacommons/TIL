@@ -6,6 +6,8 @@ repositories {
 }
 
 dependencies {
+	compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.6'
+	compile group: 'janino', name: 'janino', version: '2.5.10'
 	compile 'org.dizitart:nitrite:3.1.0'
 	compile 'org.slf4j:slf4j-api:1.7.26'
 	compile 'org.slf4j:slf4j-simple:1.7.26'
