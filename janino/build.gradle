@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+	compile group: 'janino', name: 'janino', version: '2.5.10'
+	testCompile 'junit:junit:4.12'
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+mainClassName = 'Main'
