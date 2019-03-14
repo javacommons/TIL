@@ -1,0 +1,73 @@
+plugins {
+  id 'java'
+  id 'antlr'
+  id 'application'
+  id 'com.github.sherter.google-java-format' version '0.8'
+}
+
+repositories {
+    jcenter()
+}
+
+googleJavaFormat {
+  toolVersion = '1.7'
+}
+
+import com.github.sherter.googlejavaformatgradleplugin.GoogleJavaFormat
+import com.github.sherter.googlejavaformatgradleplugin.VerifyGoogleJavaFormat
+
+task format(type: GoogleJavaFormat) {
+  source 'src/main'
+  source 'src/test'
+  include '**/*.java'
+  exclude '**/*Template.java'
+  exclude '**/Java9*.java'
+}
+
+task verifyFormatting(type: VerifyGoogleJavaFormat) {
+  source 'src/main'
+  include '**/*.java'
+  ignoreFailures true
+}
+
+[format]*.group = 'custom'
+[verifyFormatting]*.group = 'custom'
+
+ext.antlr = [
+    grammarpackage: "io.github.optjava.generated",
+    destinationDir: "src/main/java/io/github/optjava/generated"
+]
+
+dependencies {
+	//classpath group: 'com.github.sherter.google-java-format', name: 'com.github.sherter.google-java-format.gradle.plugin', version: '0.8', ext: 'pom'
+    antlr group: 'org.antlr', name: 'antlr4', version: '4.7.2' // 2019/03/14
+    compile group: 'org.antlr', name: 'antlr4-runtime', version: '4.7.2' // 2019/03/14
+	compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.13.1' //2019/03/14
+    //compile 'org.slf4j:slf4j-api:1.7.12'
+    compile group: 'com.google.googlejavaformat', name: 'google-java-format', version: '1.7' // 2019/03/14
+    testCompile 'junit:junit:4.12'
+}
+
+generateGrammarSource {
+    outputDirectory = file(new File("${antlr.destinationDir}"))
+    //arguments = ["-package", "io.github.optjava.generated",  "-listener", "-no-visitor"].flatten()
+    arguments = ["-package", "io.github.optjava.generated",  "-listener", "-visitor"].flatten()
+}
+
+compileJava {
+    dependsOn generateGrammarSource
+    source antlr.destinationDir
+}
+
+jar {
+    version="1.0.0"
+}
+
+clean {
+    delete antlr.destinationDir
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+mainClassName = 'Listener'
