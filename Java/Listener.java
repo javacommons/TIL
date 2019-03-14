@@ -144,4 +144,3 @@ compileTestJava.options.encoding = 'UTF-8'
 
 mainClassName = 'Listener'
 */
-*/
