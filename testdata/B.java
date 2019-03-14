@@ -1,10 +1,12 @@
 // srcdir/pkg2/B.java
 
-package pkg2;
+package pkg1.pkg2;
 
-import java.lang.*;
+import java.lang.*; import a.b.C;
 
-public class B implements Runnable {
+    class ABC {public String fldA="あいう"; List<String> fldB; }
+    
+    public class B implements Runnable {
     public void run() {
         System.out.println("HELLOあいう");
     }
