@@ -84,9 +84,7 @@ public class Listener extends Java9AbstractListener {
 
   @Override
   public void enterPackageDeclaration(PackageDeclarationContext ctx) {
-    // TODO 自動生成されたメソッド・スタブ
     System.out.println("enterPackageDeclaration(): " + unparse(ctx));
-    ;
     System.out.println("<" + unparse(ctx.packageName()) + ">");
   }
 
