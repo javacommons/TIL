@@ -1,0 +1,25 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+	compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.6'
+	compile group: 'janino', name: 'janino', version: '2.5.10'
+	compile 'org.dizitart:nitrite:3.1.0'
+	compile 'org.slf4j:slf4j-api:1.7.26'
+	compile 'org.slf4j:slf4j-simple:1.7.26'
+	compile group: 'net.sf.ucanaccess', name: 'ucanaccess', version: '4.0.4'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
+	compile group: 'org.firebirdsql.jdbc', name: 'jaybird-jdk18', version: '3.0.5'
+	compile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '7.2.1.jre8'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+	testCompile 'junit:junit:4.12'
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+mainClassName = 'Main'
